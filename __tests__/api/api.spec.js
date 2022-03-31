@@ -9,13 +9,26 @@ describe("Postman APIs testing", () => {
       .expect("jsonTypes", "results.*", {
         name: Joi.string(),
         rotation_period: Joi.number(),
+        orbital_period: Joi.number(),
+        diameter: Joi.number(),
         climate: Joi.string(),
+        gravity: Joi.string(),
+        terrain: Joi.string(),
+        surface_water: Joi.string(),
+        population: Joi.string(),
+        climate: Joi.string(),
+        created: Joi.string(),
+        edited: Joi.string(),
         url: Joi.string().uri()
-      }).then(result => {
+
+      })
+      
+      /*
+      .then(result => {
         const body = result.json;
         const found = body.results.find(result => result.name === 'Tatooine');
         return expect(found).not.toBeUndefined();
-      });
+      });*/
   });
 
   
