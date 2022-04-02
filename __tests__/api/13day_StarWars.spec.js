@@ -1,8 +1,8 @@
-const { Console } = require('console');
 const frisby = require('frisby');
 const Joi = frisby.Joi;
 describe('Postman APIs testing: Day 13', () => {
   it('Planets Status 200 response', () => {
+
     return frisby.get('https://swapi.dev/api/planets/')
     .expect('status', 200);
   });
@@ -70,7 +70,6 @@ describe('Postman APIs testing: Day 13', () => {
   });
 
 
-  var expected_value;
   it("Get specific species info-block", () => {
     return frisby.get("https://swapi.dev/api/species")
       .expect("json", "count", 37)
