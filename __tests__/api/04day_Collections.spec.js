@@ -6,6 +6,7 @@ describe('Postman APIs testing: Day 04', () => {
       .expect('status', 200);
   });
   
+  var api_key = 
   it('Response contain collections', () => {
     return frisby.get('https://api.getpostman.com/collections')
       
