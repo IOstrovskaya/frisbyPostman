@@ -59,7 +59,7 @@ describe('Postman APIs testing: Day 13', () => {
       hair_colors: Joi.string(),
       eye_colors: Joi.string(),
       average_lifespan: Joi.string(),
-      //homeworld: Joi.string().uri(),
+      homeworld: Joi.string().uri().allow(null),
       language: Joi.string(),
       created: Joi.string(),
       edited: Joi.string(),
@@ -69,25 +69,24 @@ describe('Postman APIs testing: Day 13', () => {
     });
   });
 
-  
+
   var expected_value;
-  it('Count tall species (average height >100 units) correct data appearence', () => {
-    let talls_count = 0;
-    frisby.get('https://swapi.dev/api/species')
-    .expect('status', 200)
-    .then(function (res) {
-      expected_value = res.body.results;      
-      for (let index = 0; index < 9; index++) {
-        const block = frisby.get('https://swapi.dev/api/species')
-        .expect('json', expected_value[index]);
-        if (block.average_height < 100) {
-          talls_count += 1;
-        }
-      };
-      console.log('Tall species count: ' + talls_count);
-    });
-    
-    
+  it("Get specific species info-block", () => {
+    return frisby.get("https://swapi.dev/api/species")
+      .expect("json", "count", 37)
+      .expect("json", "next", "https://swapi.dev/api/species/?page=2")
+      .expect("json", "results.?", {
+        name: 'Droid',
+        classification: 'artificial',
+        designation: 'sentient',
+        average_height: 'n/a',
+        skin_colors: 'n/a',
+        hair_colors: 'n/a',
+        eye_colors: 'n/a',
+        average_lifespan: 'indefinite',
+        homeworld: null,
+        language: 'n/a'
+      });
   });
     
 });
