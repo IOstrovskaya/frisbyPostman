@@ -1,6 +1,6 @@
 const frisby = require('frisby');
 const Joi = frisby.Joi;
-describe('Postman APIs testing: Day 04', () => {
+describe('Postman APIs testing: Day 01', () => {
   
   it('Post data with Postman Echo API', () => {
     return frisby.post('https://postman-echo.com/post', {

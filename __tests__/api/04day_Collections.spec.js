@@ -1,14 +1,16 @@
 const frisby = require('frisby');
 const Joi = frisby.Joi;
-const {X_API_KEY} = require('../config/global_test-config')
+const {SECRET_API_KEY} = require('D:/Documents/Git/frisbyPostman/config');
+
 describe('Postman APIs testing: Day 04', () => {
+  
   it('API Status 200 response', () => {
     return frisby.fetch('https://api.getpostman.com/collections', {
         method: 'get',
         headers: {
           Accept: 'application/json',
                   'Content-Type': 'application/json',
-                  'x-api-key': X_API_KEY,
+                  'x-api-key': SECRET_API_KEY,
         },
       })
     .expect('status', 200);
@@ -20,7 +22,7 @@ describe('Postman APIs testing: Day 04', () => {
         headers: {
           Accept: 'application/json',
                   'Content-Type': 'application/json',
-                  'x-api-key': X_API_KEY,
+                  'x-api-key': SECRET_API_KEY,
         },
       })
     .expect('status', 200)
@@ -42,7 +44,7 @@ describe('Postman APIs testing: Day 04', () => {
         headers: {
           Accept: 'application/json',
                   'Content-Type': 'application/json',
-                  'x-api-key': X_API_KEY,
+                  'x-api-key': SECRET_API_KEY,
         },
       })
       .expect('status', 200)
