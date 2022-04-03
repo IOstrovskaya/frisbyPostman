@@ -10,70 +10,6 @@ describe('Postman APIs testing: Day 08', () => {
       console.log(result.body);
     });
   });
-
-  it.skip('Correct data types in response body', () => {
-    return frisby.get('https://randomuser.me/api')
-    .expect('status', 200)
-    //.expect('jsonTypes','results', Joi.object())
-    .expect('jsonTypes','results*', {
-      gender: Joi.string(),
-    })
-    //.expect('jsonTypes','gender', Joi.string())
-    .expect('jsonTypes','name', Joi.array())
-    .expect('jsonTypes','name', {
-      title: Joi.string(),
-      first: Joi.string(),
-      last: Joi.string()
-    })
-    .expect('jsonTypes','location', {
-      street: {
-        number: Joi.number(),
-        name: Joi.string(),
-      },
-      city: Joi.string(),
-      state: Joi.string(),
-      country: Joi.string(),
-      postcode: Joi.number(),
-      coordinates: {
-        latitude: Joi.number(),
-        longitude: Joi.number(),
-      },
-      timezone: {
-        offset: Joi.number(),
-        description: Joi.string(),
-      },
-    })
-    .expect('jsonTypes', 'email', Joi.string())
-    .expect('json','login', {
-      uuid: Joi.string(),
-      username: Joi.string(),
-      password: Joi.string(),
-      salt: Joi.string(),
-      md5: Joi.string(),
-      sha1: Joi.string(),
-      sha256: Joi.string(),
-    })
-    .expect('jsonTypes', 'dob', {
-      date: Joi.string(),
-      age: Joi.number(),
-    })
-    .expect('jsonTypes','registered', {
-      date: Joi.string(),
-      age: Joi.number(),
-    })
-    .expect('jsonTypes', 'phone', Joi.string())
-    .expect('jsonTypes', 'cell', Joi.string())
-    .expect('jsonTypes', 'id', {
-      name: Joi.string(),
-      value: Joi.number(),
-    })
-    .expect('jsonTypes', 'picture', {
-      large: Joi.string().uri(),
-      medium: Joi.string().uri(),
-      thumbnail: Joi.string().uri(),
-    })
-    .expect('jsonTypes','nat', Joi.string())
-  });
   
   it('Correct data types in response body', () => {
     return frisby.get('https://randomuser.me/api')
@@ -150,6 +86,38 @@ describe('Postman APIs testing: Day 08', () => {
       results: Joi.number().required(),
       page: Joi.number().required(),
       version: Joi.string().required(),
+    })
+  });
+
+  it('Get female user', () => {
+    const params = new URLSearchParams({ gender: 'female' });
+    return frisby.fetch('https://randomuser.me/api' + '?' + params, {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+                'Content-Type': 'application/json',
+      },
+    })
+    .expect('status', 200)
+    .then((result) => {
+      console.log('Gender of user is ' +  result.json.results[0].gender);
+      console.log(result.body);
+    })
+  });
+
+  it('Get female french user', () => {
+    const params = new URLSearchParams({ gender: 'female', nat: 'FR' });
+    return frisby.fetch('https://randomuser.me/api' + '?' + params, {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+                'Content-Type': 'application/json',
+      },
+    })
+    .expect('status', 200)
+    .then((result) => {
+      console.log('Gender of user is ' +  result.json.results[0].gender + ' from ' +result.json.results[0].nat);
+      console.log(result.body);
     })
   });
 
