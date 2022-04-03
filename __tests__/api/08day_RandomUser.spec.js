@@ -3,7 +3,7 @@ const Joi = frisby.Joi;
 
 describe('Postman APIs testing: Day 08', () => {
 
-  it.skip('API Status 200 response', () => {
+  it('API Status 200 response', () => {
     return frisby.get('https://randomuser.me/api')
     .expect('status', 200)
     .then((result) => {
