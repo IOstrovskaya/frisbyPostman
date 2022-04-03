@@ -1,0 +1,5 @@
+const X_API_KEY = 'PMAK-622b13c7b4c8c752b547f190-4762d6f089320bf0025403c396f21f854c';
+
+module.exports = {
+    X_API_KEY
+}
