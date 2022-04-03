@@ -40,11 +40,6 @@ describe('Postman APIs testing: Day 17', () => {
       console.log('Pokemon type: ' + pokemon.name)
     });
   });
-
-
-
-
-
 });
 
 //prevent console from closure
