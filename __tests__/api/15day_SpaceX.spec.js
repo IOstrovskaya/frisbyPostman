@@ -4,7 +4,6 @@ const Joi = frisby.Joi;
 describe('Postman APIs testing: Day 15', () => {
 
   it('API status 200', () => {
-    //const params = new URLSearchParams({ gender: 'female' });
     return frisby.get('https://api.spacexdata.com/v4/launches/latest')
     .expect('status', 200)
     .then((result) => {
