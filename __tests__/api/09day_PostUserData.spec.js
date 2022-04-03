@@ -1,7 +1,7 @@
 const frisby = require('frisby');
 const Joi = frisby.Joi;
 
-describe('Postman APIs testing: Day 08', () => {
+describe('Postman APIs testing: Day 09', () => {
 
   it('Post new user', () => {
     const params = new URLSearchParams({ gender: 'female' });
