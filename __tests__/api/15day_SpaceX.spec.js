@@ -73,7 +73,6 @@ describe('Postman APIs testing: Day 15', () => {
     .expect('jsonTypes','launch_library_id',Joi.string())
     .expect('jsonTypes','id',Joi.string())
   });
-
 });
 
 //prevent console from closure
