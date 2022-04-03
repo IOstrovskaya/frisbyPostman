@@ -1,5 +1,6 @@
 const frisby = require('frisby');
-const {USERNAME, PASSWORD, USER_ID} = require('../config/27day_test-config')
+const {USERNAME, PASSWORD, USER_ID} = require('../tests_config/27day_test-config');
+//const {SECRET_API_KEY} = require('D:/Documents/Git/frisbyPostman/config');
 describe('Postman APIs testing: Day 27', () => {
   it('User should be able to login and get user status', () => {
     return frisby.post('http://security.postman-breakable.com/user/login', {
