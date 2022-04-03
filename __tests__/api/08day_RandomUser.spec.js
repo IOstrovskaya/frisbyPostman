@@ -78,14 +78,79 @@ describe('Postman APIs testing: Day 08', () => {
   it('Correct data types in response body', () => {
     return frisby.get('https://randomuser.me/api')
     .expect('status', 200)
-    .expect('jsonTypes','results', Joi.array())
+    .expect('jsonTypes','results', Joi.array().required())
     .then((result) => {
       console.log(result.json.results[0]);
     })
     .expect('jsonTypes', 'results[0]', {
-      gender: Joi.string(),
+      gender: Joi.string().required(),
+      name: {
+        title: Joi.string().required(),
+        first: Joi.string().required(),
+        last: Joi.string().required(),
+      },
+      location: {
+        street: {
+          number: Joi.number().required(),
+          name: Joi.string().required(),
+        },
+        city: Joi.string().required(),
+        state: Joi.string().required(),
+        country: Joi.string().required(),
+        postcode: [ 
+          Joi.string(),
+          Joi.number(),
+        ],
+        coordinates: {
+          latitude: Joi.number().required(),
+          longitude: Joi.number().required(),
+        },
+        timezone: {
+          offset: Joi.string().required(),
+          description: Joi.string().required(),
+        },
+      },
+      email: Joi.string().required(),
+      login: {
+        uuid: Joi.string().required(),
+        username: Joi.string().required(),
+        password: Joi.string().required(),
+        salt: Joi.string().required(),
+        md5: Joi.string().required(),
+        sha1: Joi.string().required(),
+        sha256: Joi.string().required(),
+      },
+      dob: {
+        date: Joi.string().required(),
+        age: Joi.number().required(),
+      },
+      registered: {
+        date: Joi.string().required(),
+        age: Joi.number().required(),
+      },
+      phone: Joi.string().required(),
+      cell: Joi.string().required(),
+      id: {
+        name: Joi.string().required().allow(''),
+        value: [
+          Joi.number(),
+          Joi.string(),
+          null,
+        ],
+      },
+      picture: {
+        large: Joi.string().uri().required(),
+        medium: Joi.string().uri().required(),
+        thumbnail: Joi.string().uri().required(),
+      },
+      nat: Joi.string().required(),
     })
-    
+    .expect('jsonTypes','info', {
+      seed: Joi.string().required(),
+      results: Joi.number().required(),
+      page: Joi.number().required(),
+      version: Joi.string().required(),
+    })
   });
 
 });
