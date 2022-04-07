@@ -1,0 +1,29 @@
+schema {
+    query: Query
+}
+
+type Album {
+    id: ID
+    image: String
+    name: String
+    tracks: [Track]
+}
+
+type Artist {
+    albums(limit: Int = 10): [Album]
+    id: ID
+    image: String
+    name: String!
+}
+
+type Query {
+    hi(message: String = 'Hi'): String
+    queryArtists(byName: String = 'Scorpions'): [Artist]
+}
+
+type Track {
+    artists: [Artist]
+    id: ID
+    name: String
+    preview_url: String
+}
