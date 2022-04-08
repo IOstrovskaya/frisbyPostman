@@ -17,8 +17,8 @@ type Artist {
 }
 
 type Query {
-    hi(message: String = 'Hi'): String
-    queryArtists(byName: String = 'Scorpions'): [Artist]
+    hi(message: String = "Hi"): String
+    queryArtists(byName: String = "Scorpions"): [Artist]
 }
 
 type Track {

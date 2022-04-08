@@ -1,12 +1,12 @@
 const frisby = require('frisby');
-const {graphql} = require{"graphql"};
+const {graphql} = require("graphql");
 
 describe('Postman APIs testing: Day 19', () => {
 
   it('Get discography of music group/artist from Spotify', () => {
     return frisby.post('https://joyce-spotify-graphql.herokuapp.com/graphql', {
       operationName: 'getArtists',
-      query: graphql
+      query: `
         query getArtists($name: String!) {
           queryArtists(byName: $name) {
             name
@@ -15,15 +15,16 @@ describe('Postman APIs testing: Day 19', () => {
               name
             }
           }
-        },
+        }`,
         variables: {
           name: 'Scorpions',
         }
     })
     .then((result) => {
-      console.log(result.json);
+      console.log(JSON.stringify(result.json));
     })
   });
+
 
 });
 
